@@ -4,6 +4,7 @@ import DB from "./db";
 import bodyParser from "body-parser";
 require("dotenv").config();
 import cors from "cors";
+import Logger from "./middlewares/Logger";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(
 );
 
 app.use(bodyParser.json());
+app.use(Logger);
 app.use(router);
 
 if (!process.env) {
