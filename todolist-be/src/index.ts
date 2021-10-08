@@ -1,13 +1,21 @@
 import express from "express";
-import routes from "./routes";
+import router from "./routes";
 import DB from "./db";
+import bodyParser from "body-parser";
 require("dotenv").config();
 import cors from "cors";
 
 const app = express();
 
 app.use(cors());
-app.use(routes);
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(bodyParser.json());
+app.use(router);
 
 if (!process.env) {
   throw new Error(`.env file required. Please create`);
