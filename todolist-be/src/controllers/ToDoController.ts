@@ -16,9 +16,17 @@ export default class {
 
   async getAll(req: Request, res: Response) {
     try {
-      const todos = await ToDo.find();
+      const page = parseInt(req.query.page);
+      const limit = parseInt(req.query.limit);
+      const skipIndex = (page - 1) * limit;
 
-      return res.status(200).send({ message: "OK", data: todos });
+      const paginatedToDos = await ToDo.find()
+        .sort({ _id: 1 })
+        .limit(limit)
+        .skip(skipIndex)
+        .exec();
+
+      return res.status(200).send({ message: "OK", data: paginatedToDos });
     } catch (e) {
       return res.status(500).send({ message: "SERVER_ERROR", error: e });
     }
