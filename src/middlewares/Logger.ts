@@ -7,6 +7,7 @@ export default function (req: Request, res: Response, next: NextFunction) {
     query: req.query,
     body: req.body,
   };
+  res.header("Access-Control-Allow-Origin", "*");
   console.log(result);
   next();
 }
