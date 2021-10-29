@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IToDo extends Document {
-  id: number;
+  id: string;
   message: string;
   completed: boolean;
 }
 
 const ToDoSchema: any = new Schema({
   id: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },

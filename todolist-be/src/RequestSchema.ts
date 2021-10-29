@@ -15,8 +15,8 @@ const schema: TypeSchema = {
   }),
   create: Joi.object().keys({
     body: Joi.object().keys({
-      id: Joi.number().required(),
-      message: Joi.string().min(4).required(),
+      id: Joi.string().required(),
+      message: Joi.string().min(2).required(),
       completed: Joi.boolean(),
     }),
   }),
@@ -25,8 +25,8 @@ const schema: TypeSchema = {
       id: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
     }),
     body: Joi.object().keys({
-      id: Joi.number().required(),
-      message: Joi.string().min(4).required(),
+      id: Joi.string(),
+      message: Joi.string().min(2),
       completed: Joi.boolean(),
     }),
   }),
